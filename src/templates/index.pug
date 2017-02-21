@@ -1,0 +1,39 @@
+mixin menu(url, name)
+  li.nav__element #[a(href=`${url}`) #{name}]
+
+
+<!DOCTYPE html>
+html(lang="es")
+head
+  meta(charset="UTF-8")
+  title Numerical Analysis Calculator
+  each css in files.CSS
+    link(rel="stylesheet" href=`${css}`)
+
+body
+  //- Intro
+  section#intro.intro
+    div.m-center
+      div.introWrapper
+        div.polynomial
+          input(type="text")#pol5.polyinp
+          label(for="pol5") x^5+
+          input(type="text")#pol4.polyinp
+          label(for="pol5") x^4+
+          input(type="text")#pol3.polyinp
+          label(for="pol5") x^3+
+          input(type="text")#pol2.polyinp
+          label(for="pol5") x^2+
+          input(type="text")#pol1.polyinp
+          label(for="pol5") x+
+          input(type="text")#polind.polyinp
+          label(for="polind") sin(x)
+          label(for="initial1") Valor inicial 1
+          input(type="text")#initial1.polyinp
+          label(for="initial2") Valor inicial 2
+          input(type="text")#initial2.polyinp
+          label(for="ea") ea
+          input(type="text")#ea.polyinp
+          input(type="button" value="Calcular")#submit
+  each js in files.JS
+    script(src=`${js}`)

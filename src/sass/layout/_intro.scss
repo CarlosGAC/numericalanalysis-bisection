@@ -1,0 +1,27 @@
+//intro
+
+.intro {
+  display          : flex;
+  justify-content  : center;
+  margin-top: 2em;
+
+  .m-center {
+    height: 2000px;
+  }
+  .introWrapper {
+    text-align: center;
+    height: 1500px;
+    width: 750px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .polyinp {
+      width: 3em;
+      font-size: $h4;
+    }
+    label {
+      font-size: $h4;
+    }
+  }
+}
