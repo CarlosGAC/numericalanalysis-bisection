@@ -2,7 +2,7 @@
 <html lang="es"></html>
 <head>
   <meta charset="UTF-8"/>
-  <title>Biseccion</title>
+  <title>Numerical Analysis Calculator</title>
   <link rel="stylesheet" href="node_modules/animate.css/animate.min.css"/>
   <link rel="stylesheet" href="css/main.css"/>
 </head>
@@ -10,82 +10,39 @@
   <section class="header">
     <nav class="navBar">
       <ul class="nav-list">
-        <li class="nav-element"><a class="nav-link" href="index.html">Biseccion</a></li>
+        <li class="nav-element"><a class="nav-link" href="biseccion.html">Biseccion</a></li>
         <li class="nav-element"><a class="nav-link" href="falsa.html">Regla Falsa</a></li>
         <li class="nav-element"><a class="nav-link" href="incrementos.html">Incrementos</a></li>
         <li class="nav-element"><a class="nav-link" href="secante.html">Secante</a></li>
       </ul>
     </nav>
   </section>
-  <section class="intro">
+  <section class="intro" id="intro">
     <div class="m-center">
-      <div class="column">
-        <div class="polynome">
-          <h4>x^5</h4>
-        </div>
-        <div class="polynome">
-          <h4>x^4</h4>
-        </div>
-        <div class="polynome">
-          <h4>x^3</h4>
-        </div>
-        <div class="polynome">
-          <h4>x^2</h4>
-        </div>
-        <div class="polynome">
-          <h4>x</h4>
-        </div>
-        <div class="polynome">
-          <h4>sin(x)</h4>
-        </div>
-        <div class="polynome">
-          <h4>Valor inicial 1</h4>
-        </div>
-        <div class="polynome">
-          <h4>Valor inicial 2</h4>
-        </div>
-        <div class="polynome">
-          <h4>ea</h4>
-        </div>
-      </div>
-      <div class="column">
-        <div class="input">
+      <div class="introWrapper">
+        <div class="polynomial">
           <input class="polyinp" type="text" id="pol5"/>
-        </div>
-        <div class="input">
+          <label for="pol5">x^5+</label>
           <input class="polyinp" type="text" id="pol4"/>
-        </div>
-        <div class="input">
+          <label for="pol5">x^4+</label>
           <input class="polyinp" type="text" id="pol3"/>
-        </div>
-        <div class="input">
+          <label for="pol5">x^3+</label>
           <input class="polyinp" type="text" id="pol2"/>
-        </div>
-        <div class="input">
+          <label for="pol5">x^2+</label>
           <input class="polyinp" type="text" id="pol1"/>
-        </div>
-        <div class="input">
+          <label for="pol5">x+</label>
           <input class="polyinp" type="text" id="polind"/>
-        </div>
-        <div class="input">
+          <label for="polind">sin(x)</label>
+          <label for="initial1">Valor inicial 1</label>
           <input class="polyinp" type="text" id="initial1"/>
-        </div>
-        <div class="input">
+          <label for="initial2">Valor inicial 2</label>
           <input class="polyinp" type="text" id="initial2"/>
-        </div>
-        <div class="input">
+          <label for="ea">ea</label>
           <input class="polyinp" type="text" id="ea"/>
-        </div>
-      </div>
-      <div class="column">
-        <div class="submit">
           <input type="button" value="Calcular" id="submit"/>
         </div>
       </div>
     </div>
-  </section>
-  <section class="table">
-    <h1>Tabla de resultados</h1>
   </section>
   <script src="node_modules/jquery/dist/jquery.min.js"></script>
   <script src="node_modules/wowjs/dist/wow.min.js"></script>

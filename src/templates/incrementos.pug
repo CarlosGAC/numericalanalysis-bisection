@@ -6,7 +6,7 @@ mixin menu(url, name)
 html(lang="es")
 head
   meta(charset="UTF-8")
-  title Biseccion
+  title Incrementos
   each css in files.CSS
     link(rel="stylesheet" href=`${css}`)
 
@@ -70,6 +70,6 @@ body
           input(type="button" value="Calcular")#submit
   section.table
     h1 Tabla de resultados
-
+    
   each js in files.JS
     script(src=`${js}`)
