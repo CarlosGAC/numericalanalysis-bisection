@@ -12,6 +12,8 @@ var arraypols = [$("#pol5"), $("#pol4"), $("#pol3"), $("#pol2"), $("#pol1"), $("
 var values = [];
 
 submit.click(function () {
+  $('#table').empty();
+  $("#res").text("Resultado: ");
   arraypols.forEach(function (item, index) {
     if (item.val() == "") {
       item.val(0);
@@ -26,7 +28,7 @@ submit.click(function () {
     values[index] = parseFloat(item.val());
   });
   //console.log("Asd: " +values[0]);
-  bisection(values[6], values[7], values[8]);
+  metodo(values[6], values[7], values[8]);
 });
 
 function calcf(x) {
@@ -49,7 +51,7 @@ function calcf(x) {
   return res;
 }
 
-function bisection(firstval, secondval, error) {
+function metodo(firstval, secondval, error) {
   var x1 = firstval;
   var x2 = secondval;
   var ea = 100;
@@ -59,6 +61,9 @@ function bisection(firstval, secondval, error) {
   var fx1xm = 0;
   var counter = 0;
   var firstvalue = calcf((x1 + x2) / 2);
+  var err = 5;
+
+  $("#table").append("<tr><th class='table-title wow bounceInUp' data-wow-delay='0.5s'>X1</th><th class='table-title wow bounceInUp' data-wow-delay='0.6s'>X2</th><th class='table-title wow bounceInUp' data-wow-delay='0.7s'>Xm</th><th class='table-title wow bounceInUp' data-wow-delay='0.8s'>f(X1)</th><th class='table-title wow bounceInUp' data-wow-delay='0.9s'>f(Xm)</th><th class='table-title wow bounceInUp' data-wow-delay='1s'>f(X1)(Xm)</th><th class='table-title wow bounceInUp' data-wow-delay='1.1s'>ea</th>");
 
   while (ea > error) {
     console.log("X1 : " + x1);
@@ -71,6 +76,12 @@ function bisection(firstval, secondval, error) {
     console.log("f(xm): " + fxm);
     fx1xm = fx1 * fxm;
     console.log("f(x1xm): " + fx1xm);
+    if (counter > 1) {
+      console.log("ea = " + xm + "-" + firstvalue + "/ " + xm);
+      ea = Math.abs((xm - firstvalue) / xm * 100);
+    }
+    console.log("Se imprime");
+    $("#table").append("<tr><th class='wow bounceInUp' data-wow-delay='0.5s'>" + x1.toFixed(err) + "</th><th class='wow bounceInUp' data-wow-delay='0.6s'>" + x2.toFixed(err) + "</th><th class='wow bounceInUp' data-wow-delay='0.7s'>" + xm.toFixed(err) + "</th><th class='wow bounceInUp' data-wow-delay='0.8s'>" + fx1.toFixed(err) + "</th><th class='wow bounceInUp' data-wow-delay='0.9s'>" + fxm.toFixed(err) + "</th><th class='wow bounceInUp' data-wow-delay='1s'>" + fx1xm.toFixed(err) + "</th><th class='wow bounceInUp' data-wow-delay='1.1s'>" + ea.toFixed(3) + "%" + "</th>");
     if (fx1xm > 0) {
       console.log("positive");
       x1 = xm;
@@ -80,13 +91,11 @@ function bisection(firstval, secondval, error) {
       console.log("Nuevo x1 : " + x1);
       x2 = xm;
     }
-    if (counter > 1) {
-      console.log("ea = " + xm + "-" + firstvalue + "/ " + xm);
-      ea = Math.abs((xm - firstvalue) / xm * 100);
-    }
     counter++;
     console.log("First value: " + firstvalue);
     console.log("ea: " + ea);
+
     firstvalue = xm;
   }
+  $("#res").text($("#res").text() + xm);
 }

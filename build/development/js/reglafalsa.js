@@ -12,6 +12,8 @@ var arraypols = [$("#pol5"), $("#pol4"), $("#pol3"), $("#pol2"), $("#pol1"), $("
 var values = [];
 
 submit.click(function () {
+  $('#table').empty();
+  $("#res").text("Resultado: ");
   arraypols.forEach(function (item, index) {
     if (item.val() == "") {
       item.val(0);
@@ -26,7 +28,7 @@ submit.click(function () {
     values[index] = parseFloat(item.val());
   });
   //console.log("Asd: " +values[0]);
-  bisection(values[6], values[7], values[8]);
+  metodo(values[6], values[7], values[8]);
 });
 
 function calcf(x) {
@@ -41,52 +43,61 @@ function calcf(x) {
     //console.log(res);
     power--;
   }
-  //res = res + Math.sin(x * Math.PI / 180) * values[5];
-  res = res + values[5];
+  res = res + Math.sin(x * Math.PI / 180) * values[5];
+  //res = res + values[5];
   //console.log("LACHIDA: " + res);
   //console.log(Math.sin(x * Math.PI / 180) * values[5]);
   //console.log("Res: " + res);
   return res;
 }
 
-function bisection(firstval, secondval, error) {
+function metodo(firstval, secondval, error) {
   var x1 = firstval;
   var x2 = secondval;
   var ea = 100;
-  var xm = 0;
-  var fx1 = 0;
-  var fxm = 0;
-  var fx1xm = 0;
-  var counter = 0;
-  var firstvalue = calcf((x1 + x2) / 2);
+  var fx1 = calcf(x1);
+  var fx2 = calcf(x2);
+  var xr = 0;
+  var fxr = 0;
+  var err = 5;
+  xr = (fx2 * x1 - fx1 * x2) / (fx2 - fx1);
+  fxr = calcf(xr);
+  var firstvalue = fxr;
 
-  while (ea > error) {
-    console.log("X1 : " + x1);
-    console.log("X2: " + x2);
-    xm = (x1 + x2) / 2;
-    console.log("Xm: " + xm);
-    fx1 = calcf(x1);
-    console.log("f(x1): " + fx1);
-    fxm = calcf(xm);
-    console.log("f(xm): " + fxm);
-    fx1xm = fx1 * fxm;
-    console.log("f(x1xm): " + fx1xm);
-    if (fx1xm > 0) {
-      console.log("positive");
-      x1 = xm;
-      console.log("Nuevo x2 : " + x2);
-    } else if (fx1xm < 0) {
-      console.log("negativazo");
-      console.log("Nuevo x1 : " + x1);
-      x2 = xm;
+  if (fx1 * fx2 < 0) {
+    $("#table").append("<tr><th class='table-title wow bounceInUp' data-wow-delay='0.5s'>X1</th><th class='table-title wow bounceInUp' data-wow-delay='0.6s'>X2</th><th class='table-title wow bounceInUp' data-wow-delay='0.7s'>Xr</th><th class='table-title wow bounceInUp' data-wow-delay='0.8s'>f(X1)</th><th class='table-title wow bounceInUp' data-wow-delay='0.9s'>f(X2)</th><th class='table-title wow bounceInUp' data-wow-delay='1s'>f(Xr)</th><th class='table-title wow bounceInUp' data-wow-delay='1.1s'>ea</th>");
+
+    while (ea > error) {
+
+      xr = (fx2 * x1 - fx1 * x2) / (fx2 - fx1);
+      fxr = calcf(xr);
+      console.log("x1: " + x1);
+
+      console.log("x2: " + x2);
+
+      console.log("xr: " + xr);
+
+      console.log("fx1: " + fx1);
+
+      console.log("fx2: " + fx2);
+
+      console.log("fxr: " + fxr);
+      if (fx1 * fxr > 0) {
+        x1 = xr;
+        fx1 = fxr;
+      } else if (fx1 * fxr < 0) {
+        x2 = xr;
+        fx2 = fxr;
+      }
+      console.log("ea: " + ea);
+      console.log("ea = " + xr + "-" + firstvalue + "/" + xr);
+      ea = Math.abs((xr - firstvalue) / xr * 100);
+      console.log("ea: " + ea);
+      firstvalue = xr;
+      $("#table").append("<tr><th class='wow bounceInUp' data-wow-delay='0.5s'>" + x1.toFixed(err) + "</th><th class='wow bounceInUp' data-wow-delay='0.6s'>" + x2.toFixed(err) + "</th><th class='wow bounceInUp' data-wow-delay='0.7s'>" + xr.toFixed(err) + "</th><th class='wow bounceInUp' data-wow-delay='0.8s'>" + fx1.toFixed(err) + "</th><th class='wow bounceInUp' data-wow-delay='0.9s'>" + fx2.toFixed(err) + "</th><th class='wow bounceInUp' data-wow-delay='1s'>" + fxr.toFixed(err) + "</th><th class='wow bounceInUp' data-wow-delay='1.1s'>" + ea.toFixed(3) + "%" + "</th>");
     }
-    if (counter > 1) {
-      console.log("ea = " + xm + "-" + firstvalue + "/ " + xm);
-      ea = Math.abs((xm - firstvalue) / xm * 100);
-    }
-    counter++;
-    console.log("First value: " + firstvalue);
-    console.log("ea: " + ea);
-    firstvalue = xm;
+    $("#res").text($("#res").text() + xr);
+  } else {
+    $("#res").text("ERROR: f(X1) y f(x2) no son menores a 0");
   }
 }

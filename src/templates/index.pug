@@ -68,8 +68,16 @@ body
       div.column
         div.submit
           input(type="button" value="Calcular")#submit
-  section.table
-    h1 Tabla de resultados
 
-    script(src='node_modules/jquery/dist/jquery.min.js')
-    script(src='js/bisection.js')
+  //- Table
+  section.table
+    h3.table__h3 Tabla de iteraciones
+    table(width="100%")#table
+
+    div.tableResWrapper
+      h1#res Resultado:
+
+  script(src='node_modules/jquery/dist/jquery.min.js')
+  script(src='js/bisection.js')
+  script(src="node_modules/wowjs/dist/wow.min.js")
+  script(src="js/wow.js")

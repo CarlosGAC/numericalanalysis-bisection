@@ -68,8 +68,16 @@ body
       div.column
         div.submit
           input(type="button" value="Calcular")#submit
+
+  //- Table
   section.table
-    h1 Tabla de resultados
-    
-  each js in files.JS
-    script(src=`${js}`)
+    h3.table__h3 Tabla de iteraciones
+    table(width="100%")#table
+
+    div.tableResWrapper
+      h1#res Resultado:
+
+  script(src='node_modules/jquery/dist/jquery.min.js')
+  script(src='js/incrementos.js')
+  script(src="node_modules/wowjs/dist/wow.min.js")
+  script(src="js/wow.js")

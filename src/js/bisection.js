@@ -1,6 +1,5 @@
 "use strict";
 
-
 let pol5 = $("#pol5");
 let pol4 = $("#pol4");
 let pol3 = $("#pol3");
@@ -13,6 +12,8 @@ let arraypols = [$("#pol5"),$("#pol4"),$("#pol3"),$("#pol2"),$("#pol1"),$("#poli
 let values = [];
 
 submit.click(() => {
+  $('#table').empty();
+  $("#res").text("Resultado: ");
   arraypols.forEach((item, index) => {
     if(item.val() == "") {
       item.val(0);
@@ -27,7 +28,7 @@ submit.click(() => {
     values[index] = (parseFloat(item.val()));
   });
   //console.log("Asd: " +values[0]);
-  bisection(values[6],values[7], values[8]);
+  metodo(values[6],values[7], values[8]);
 });
 
 function calcf(x) {
@@ -42,15 +43,15 @@ function calcf(x) {
     //console.log(res);
     power--;
   }
-  //res = res + Math.sin(x * Math.PI / 180) * values[5];
-  res = res + values[5];
+  res = res + Math.sin(x * Math.PI / 180) * values[5];
+  //res = res + values[5];
   //console.log("LACHIDA: " + res);
   //console.log(Math.sin(x * Math.PI / 180) * values[5]);
   //console.log("Res: " + res);
   return res;
 }
 
-function bisection(firstval,secondval, error) {
+function metodo(firstval,secondval, error) {
   let x1 = firstval;
   let x2 = secondval;
   let ea = 100;
@@ -60,6 +61,9 @@ function bisection(firstval,secondval, error) {
   let fx1xm = 0;
   let counter = 0;
   let firstvalue = calcf((x1+x2) / 2);
+  let err = 5;
+
+  $("#table").append("<tr><th class='table-title wow bounceInUp' data-wow-delay='0.5s'>X1</th><th class='table-title wow bounceInUp' data-wow-delay='0.6s'>X2</th><th class='table-title wow bounceInUp' data-wow-delay='0.7s'>Xm</th><th class='table-title wow bounceInUp' data-wow-delay='0.8s'>f(X1)</th><th class='table-title wow bounceInUp' data-wow-delay='0.9s'>f(Xm)</th><th class='table-title wow bounceInUp' data-wow-delay='1s'>f(X1)(Xm)</th><th class='table-title wow bounceInUp' data-wow-delay='1.1s'>ea</th>");
 
   while(ea > error){
     console.log("X1 : " + x1);
@@ -72,6 +76,12 @@ function bisection(firstval,secondval, error) {
     console.log("f(xm): " + fxm);
     fx1xm = fx1 * fxm;
     console.log("f(x1xm): " + fx1xm);
+    if(counter > 1) {
+      console.log("ea = " + xm + "-" + firstvalue + "/ " + xm);
+      ea = Math.abs((xm - firstvalue) / xm * 100);
+    }
+    console.log("Se imprime");
+    $("#table").append("<tr><th class='wow bounceInUp' data-wow-delay='0.5s'>"+x1.toFixed(err)+"</th><th class='wow bounceInUp' data-wow-delay='0.6s'>"+x2.toFixed(err)+"</th><th class='wow bounceInUp' data-wow-delay='0.7s'>"+xm.toFixed(err)+"</th><th class='wow bounceInUp' data-wow-delay='0.8s'>"+fx1.toFixed(err)+"</th><th class='wow bounceInUp' data-wow-delay='0.9s'>"+fxm.toFixed(err)+"</th><th class='wow bounceInUp' data-wow-delay='1s'>"+fx1xm.toFixed(err)+"</th><th class='wow bounceInUp' data-wow-delay='1.1s'>"+(ea).toFixed(3)+"%"+"</th>");
     if(fx1xm > 0) {
       console.log("positive");
       x1 = xm;
@@ -81,13 +91,12 @@ function bisection(firstval,secondval, error) {
       console.log("Nuevo x1 : " + x1);
       x2 = xm;
     }
-    if(counter > 1) {
-      console.log("ea = " + xm + "-" + firstvalue + "/ " + xm);
-      ea = Math.abs((xm - firstvalue) / xm * 100);
-    }
     counter++;
     console.log("First value: " + firstvalue);
     console.log("ea: " + ea);
+
     firstvalue = xm;
     }
+    $("#res").text($("#res").text() + xm);
+
 }

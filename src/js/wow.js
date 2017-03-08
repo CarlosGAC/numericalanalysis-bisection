@@ -1,4 +1,4 @@
-//Declaracon del modo estricto de Javascript
+//Declaracion del modo estricto de Javascript
 "use strict";
 
 //Inicializacion de wowjs
