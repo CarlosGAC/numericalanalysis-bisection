@@ -43,7 +43,7 @@ function calcf(x) {
     //console.log(res);
     power--;
   }
-  res = res + Math.sin(x * Math.PI / 180) * values[5];
+  res = res + Math.sin((x * Math.PI / 180)*values[5]) * values[5];
   //res = res + values[5];
   //console.log("LACHIDA: " + res);
   //console.log(Math.sin(x * Math.PI / 180) * values[5]);

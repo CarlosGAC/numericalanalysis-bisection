@@ -43,7 +43,7 @@ function calcf(x) {
     //console.log(res);
     power--;
   }
-  res = res + Math.sin(x * Math.PI / 180) * values[5];
+  res = res + Math.sin(x * Math.PI / 180 * values[5]) * values[5];
   //res = res + values[5];
   //console.log("LACHIDA: " + res);
   //console.log(Math.sin(x * Math.PI / 180) * values[5]);
@@ -63,6 +63,10 @@ function metodo(firstval, secondval, error) {
   xr = (fx2 * x1 - fx1 * x2) / (fx2 - fx1);
   fxr = calcf(xr);
   var firstvalue = fxr;
+
+  console.log("fx1: " + fx1);
+
+  console.log("fx2: " + fx2);
 
   if (fx1 * fx2 < 0) {
     $("#table").append("<tr><th class='table-title wow bounceInUp' data-wow-delay='0.5s'>X1</th><th class='table-title wow bounceInUp' data-wow-delay='0.6s'>X2</th><th class='table-title wow bounceInUp' data-wow-delay='0.7s'>Xr</th><th class='table-title wow bounceInUp' data-wow-delay='0.8s'>f(X1)</th><th class='table-title wow bounceInUp' data-wow-delay='0.9s'>f(X2)</th><th class='table-title wow bounceInUp' data-wow-delay='1s'>f(Xr)</th><th class='table-title wow bounceInUp' data-wow-delay='1.1s'>ea</th>");
